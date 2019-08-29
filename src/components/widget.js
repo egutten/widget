@@ -6,26 +6,28 @@ import TestBox from './TestBox.js';
 
 class Widget extends Component {
   state = {
-    showWidget: false
-  }
+    show: false
+  };
   
-  widgetAppearanceHandler = () => {
-    this.setState((prevState) => {
-      return {showWidget: !prevState.showWidget}
-    });
-  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({show: true});
+    }, 2000)
+  };
   
   render() {
+    let testBox = null;
+    
+    if (this.state.show) {
+      testBox = <TestBox />;
+      setTimeout(() => {
+        this.setState({show: false});
+      }, 4000)
+    };
+    
     return (
       <Fragment>
-        <button
-          onClick={this.widgetAppearanceHandler}
-        >
-          Reveal Widget
-        </button>
-        <TestBox
-          show={this.state.showWidget} 
-        />
+       {testBox}
       </Fragment>
     )
   }

@@ -1,7 +1,7 @@
 import React from 'react'; 
 
 const testBox = (props) => (
-  props.show ? <div className="test"></div> : null
+  <div className="test"></div> 
 );
 
 export default testBox;
